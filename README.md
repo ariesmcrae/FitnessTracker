@@ -1,100 +1,105 @@
-# FitnessTracker
-Demonstration of Spring Boot using REST, Jpa and Spring Data Jpa.
+# Fitness Tracker
+Demonstration of Spring Boot using REST, JPA, Spring Data Jpa, and H2 database.
 
-Branch jpa - contains jpa example
-Branch master and SpringDataJpa - contain Spring Data Jpa example.
+* Branch JPA - contains JPA example
+* Branch master and SpringDataJpa - contain Spring Data Jpa example.
 
  
 
-`Request localhost:8080/goal 	POST`
-<pre>
+**Request**
+`localhost:8080/goal 	POST`
+```
 { "minutes":30 }
-</pre>
+```
 
-`Response`
-<pre>
+**Response**
+```
 {
     "id": 1,
     "minutes": 30,
     "exercise": []
 }
-</pre>
+```
 
 
 
-`Request localhost:8080/goal 	POST`
-<pre>
+**Request**
+`localhost:8080/goal 	POST`
+```
 { "minutes":40 }
-</pre>
+```
 
-`Response`
-<pre>
+**Response**
+```
 {
     "id": 2,
     "minutes": 40,
     "exercise": []
 }
-</pre>
+```
 
 
-`Request localhost:8080/goal/1/exercise		POST`
-<pre>
+**Request** 
+`localhost:8080/goal/1/exercise		POST`
+```
 { 
   "activity":"Running",
   "minutes":50
 }
-</pre>
+```
 
-`Response`
-<pre>
+**Response**
+```
 {
     "id": 1,
     "activity": "Running",
     "minutes": 50
 }
-</pre>
+```
 
 
-`Request localhost:8080/goal/1/exercise		POST`
-<pre>
+**Request** `localhost:8080/goal/1/exercise		POST`
+```
 { 
   "activity":"Swimming",
   "minutes":60
 }
-</pre>
+```
 
-`Response`
-<pre>
+**Response**
+```
 {
     "id": 2,
     "activity": "Swimming",
     "minutes": 60
 }
-</pre>
+```
 
 
 
-`Request localhost:8080/goal/2/exercise 		POST`
-<pre>
+**Request**
+`localhost:8080/goal/2/exercise 		POST`
+```
 { 
   "activity":"Cycling",
   "minutes":21
 }
-</pre>
+```
 
-`Response`
-<pre>
+**Response**
+```
 {
     "id": 3,
     "activity": "Cycling",
     "minutes": 21
 }
-</pre>
+```
 
 
-`Request localhost:8080/goal 	GET`
-`Response`
-<pre>
+**Request**
+`localhost:8080/goal 	GET`
+**Response**
+```
 [
     {
         "id": 1,
@@ -124,13 +129,15 @@ Branch master and SpringDataJpa - contain Spring Data Jpa example.
         ]
     }
 ]
-</pre>
+```
 
 
 
-`Request localhost:8080/goal/report 	GET`
-`Response`
-<pre>
+**Request** 
+`localhost:8080/goal/report 	GET`
+
+**Response**
+```
 [
     {
         "goalMinutes": 30,
@@ -148,4 +155,4 @@ Branch master and SpringDataJpa - contain Spring Data Jpa example.
         "exerciseActivity": "Cycling"
     }
 ]
-</pre>
+```
