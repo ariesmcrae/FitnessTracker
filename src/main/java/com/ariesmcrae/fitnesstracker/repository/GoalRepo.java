@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,7 +26,6 @@ public class GoalRepo {
 	      } else {
 	          em.merge(goal); //update
 	      }
-
 	  }
 
 	  
@@ -37,23 +36,16 @@ public class GoalRepo {
 
 
 
-    @SuppressWarnings("unchecked")
     public List<Goal> findAllGoals() {
-        String jpql = "Select g from Goal g";
-        Query query = em.createQuery(jpql);
+        TypedQuery<Goal> query = em.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
 
         return query.getResultList();
     }
     
     
     
-    @SuppressWarnings("unchecked")
     public List<GoalReport> findAllGoalReport() {
-        //projection allows u to get data from different tables. i.e. custom query.
-        String projection = "Select new com.ariesmcrae.fitnesstracker.model.projection.GoalReport(g.minutes, e.minutes, e.activity) " +
-                            "from Goal g, Exercise e where g.id = e.goal.id";
-        
-        Query query = em.createQuery(projection);
+    	TypedQuery<GoalReport> query = em.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
         
         return query.getResultList();
     }
