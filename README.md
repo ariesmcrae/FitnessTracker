@@ -1,7 +1,7 @@
 # Fitness Tracker
 Demonstration of Spring Boot using REST, JPA, Spring Data Jpa, and H2 database.
 
-* Branch JPA - contains JPA example
+* Branch JPA - contains JPA example.
 * Branch master and SpringDataJpa - contain Spring Data Jpa example.
 
  
@@ -98,6 +98,7 @@ Demonstration of Spring Boot using REST, JPA, Spring Data Jpa, and H2 database.
 
 **Request**
 `localhost:8080/goal 	GET`
+
 **Response**
 ```
 [
