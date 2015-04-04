@@ -2,52 +2,19 @@ package com.ariesmcrae.fitnesstracker.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ariesmcrae.fitnesstracker.model.Goal;
 import com.ariesmcrae.fitnesstracker.model.projection.GoalReport;
 
 @Repository("goalRepository")
-public class GoalRepo {
+public interface GoalRepo extends JpaRepository<Goal, Long>{
 
-	  // An EntityManager will be automatically injected from entityManagerFactory setup on DatabaseConfig class.
-	  @PersistenceContext
-	  private EntityManager em;	
-	
-	  
-	  public void save(Goal goal) {
-	      if (goal.getId() == null) {
-	          em.persist(goal); //create
-	          em.flush(); 
-	      } else {
-	          em.merge(goal); //update
-	      }
-	  }
-
-	  
-	  
-	  public Goal getById(long id) {
-	      return em.find(Goal.class, id);
-	  }
-
-
-
-    public List<Goal> findAllGoals() {
-        TypedQuery<Goal> query = em.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
-
-        return query.getResultList();
-    }
-    
-    
-    
-    public List<GoalReport> findAllGoalReport() {
-    	TypedQuery<GoalReport> query = em.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
-        
-        return query.getResultList();
-    }
+	//Spring Data JPA has no support for NamedQuery (unlike regular JPA), therefore we put the query here.
+	//In NamedQuery, we put the query into the Entity itself.
+	@Query("Select new com.ariesmcrae.fitnesstracker.model.projection.GoalReport(g.minutes, e.minutes, e.activity) from Goal g, Exercise e where g.id = e.goal.id")	
+	List<GoalReport> findAllGoalReport();
 
 }

@@ -17,21 +17,25 @@ public class GoalService {
 	private GoalRepo repo;
 
 	
+	
 	@Transactional
 	public void save(Goal goal) {
 		repo.save(goal);
 	}
 	
 	
+	
     public Goal getGoal(Long id) {
-        return repo.getById(id);
+        return repo.findOne(id);
     }
 
 
+    
     public List<Goal> findAllGoals() {
-        return repo.findAllGoals();
+        return repo.findAll();
     }
 	
+    
     
     public List<GoalReport> getGoalReport() {
         return repo.findAllGoalReport();

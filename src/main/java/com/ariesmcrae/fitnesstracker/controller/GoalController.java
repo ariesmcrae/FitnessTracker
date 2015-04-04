@@ -29,6 +29,7 @@ public class GoalController {
 	// Use Chrome Postman raw { "minutes":30 }
 	@RequestMapping(value="/goal", method=RequestMethod.POST)	
 	public @ResponseBody Goal create(@RequestBody Goal goal) {
+		LOG.debug("Creating new Goal");
 		service.save(goal);
 		return goal;
 	}
@@ -37,6 +38,7 @@ public class GoalController {
 	// blahblah.com/goal/{id} PUT	
 	@RequestMapping(value = "goal/{id}", method = RequestMethod.PUT)
 	public @ResponseBody Long update(@PathVariable Long id, @RequestBody Goal goal) {
+		LOG.debug("Updating existing goal with Id = {}", id);
 	    service.save(goal);
 		return id;
 	}
@@ -44,12 +46,14 @@ public class GoalController {
 	
     @RequestMapping(value = "/goal", method = RequestMethod.GET)
     public @ResponseBody List<Goal> findAllGoals() {
+    	LOG.debug("Finding all goals");
         return service.findAllGoals(); 
     }
 	
     
     @RequestMapping(value = "/goal/report", method = RequestMethod.GET)
 	public @ResponseBody List<GoalReport> getReport() {
+    	LOG.debug("Getting all goal reports");    	
         return service.getGoalReport();
     }
 }

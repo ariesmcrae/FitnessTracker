@@ -33,6 +33,8 @@ public class ExerciseController {
 	//{"activity":"running", "minutes":50}
 	@RequestMapping(value = "/goal/{goalId}/exercise",  method = RequestMethod.POST)
 	public @ResponseBody Exercise addMinutesToGoal(@PathVariable Long goalId,  @RequestBody Exercise exercise) {
+		LOG.info("Adding minutes to goal");
+		
 	    Goal goal = goalService.getGoal(goalId);
 	    
 	    exercise.setGoal(goal);
@@ -42,11 +44,5 @@ public class ExerciseController {
 	    return exercise;
 	}
 
-	
-	
-//	@RequestMapping(value = "/activities", method = RequestMethod.GET)
-//	public @ResponseBody List<Activity> findAllActivities() {
-//		return exerciseService.findAllActivities();
-//	}
 	
 }

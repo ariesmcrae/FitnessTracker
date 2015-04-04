@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -21,17 +19,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 //use @Table(NAME="goals") if u want to override the table name from GOAL to GOALS.
 
-//FIND_GOAL_REPORTS query uses projection. It allows u to get data from different tables. i.e. custom query.
-@NamedQueries({
-		@NamedQuery(name=Goal.FIND_ALL_GOALS, query="Select g from Goal g"),
-		@NamedQuery(name=Goal.FIND_GOAL_REPORTS, query="Select new com.ariesmcrae.fitnesstracker.model.projection.GoalReport(g.minutes, e.minutes, e.activity) from Goal g, Exercise e where g.id = e.goal.id")
-})
 public class Goal {
-	
-
-	public static final String FIND_GOAL_REPORTS = "findGoalReports";
-	public static final String FIND_ALL_GOALS = "findAllGoals";
-
 	@Id @GeneratedValue //@Column(name="GOAL_ID")
 	//Use @Column to override column name from ID to GOAL_ID
 	private Long id;
